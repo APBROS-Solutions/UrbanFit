@@ -4,6 +4,7 @@ import { Menu, X, Dumbbell, Heart, Zap, Target, MapPin, Clock, Phone, Mail } fro
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isMapError, setIsMapError] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -371,11 +372,26 @@ const App = () => {
                 </div>
               </div>
 
-              {/* Map Placeholder */}
+              {/* Location Map */}
               <div className="bg-neutral-900 rounded-lg overflow-hidden h-64">
-                <div className="w-full h-full flex items-center justify-center">
-                  <MapPin className="w-16 h-16 text-[#39FF14]" />
-                </div>
+                {isMapError ? (
+                  <div className="w-full h-full flex flex-col items-center justify-center space-y-3">
+                    <MapPin className="w-16 h-16 text-[#39FF14]" />
+                    <p className="text-neutral-400 text-sm px-4 text-center">
+                      Map is currently unavailable. Showing location icon instead.
+                    </p>
+                  </div>
+                ) : (
+                  <iframe
+                    title="UrbanFit Gym Location"
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.518157327004!2d77.69504171094573!3d27.577460831109445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39736f99c2d2e329%3A0x4294ba7a839c4126!2sROYAL%20FITNESS%20GYM!5e0!3m2!1sen!2sin!4v1766046398103!5m2!1sen!2sin"
+                    onError={() => setIsMapError(true)}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -395,7 +411,7 @@ const App = () => {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/1234567890"
+        href="https://wa.me/8265826307"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-[#39FF14] text-black p-4 rounded-full shadow-lg hover:bg-[#2DE00F] transition-all z-50 hover:scale-110"

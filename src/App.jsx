@@ -110,7 +110,7 @@ const App = () => {
               Join Now
             </button>
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-[#39FF14] text-[#39FF14] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#39FF14] hover:text-black transition-all"
